@@ -20,5 +20,9 @@ names=V(g)$names
 coords = layout_with_fr(g)
 oc = cluster_optimal(g)
 
+c2 = cluster_leading_eigen(g) 
+
 # visualizing clusters
 plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(oc),vertex.size=10)
+
+plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(c2),vertex.size=10)
