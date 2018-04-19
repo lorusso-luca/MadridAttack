@@ -14,4 +14,11 @@ g = simplify(g)
 E(g)$weight = E(g)$weight / 2
 V(g)$names = names
 # delete isolated nodes
-g=delete_vertices(g,which(degree(g)==0)) names=V(g)$names
+g=delete_vertices(g,which(degree(g)==0))
+names=V(g)$names
+
+coords = layout_with_fr(g)
+oc = cluster_optimal(g)
+
+# visualizing clusters
+plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(oc),vertex.size=10)
