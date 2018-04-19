@@ -26,3 +26,5 @@ c2 = cluster_leading_eigen(g)
 plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(oc),vertex.size=10)
 
 plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(c2),vertex.size=10)
+
+plot(g)
