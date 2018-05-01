@@ -26,8 +26,16 @@ modularity(c2)
 # visualizing clusters
 plot(g, layout=coords, vertex.label=NA, vertex.color=membership(oc),vertex.size=10)
 
-
 ##individuare il terrorista più pericoloso
+plot(degree(g))
+sizes(oc)
+membership(oc)
+
+plot(betweenness(g))
+vertex.attributes(g,'57')
+vertex.attributes(g,'3')
+vertex.attributes(g,'37')
+
 ##- individuare terrorista più pericoloso = con più connessioni tra i vari cluster [meno pericoloso]
 ##- individuare il “capo di ogni cluster” = più connesso all interno del cluster (indipendentemente dal peso) [meno connessoo]
 ##- il gruppo più coeso [meno coeso]
