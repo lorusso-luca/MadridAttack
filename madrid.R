@@ -18,35 +18,56 @@ g=delete_vertices(g,which(degree(g)==0))
 names=V(g)$names
 
 coords = layout_with_fr(g)
+
+
 oc = cluster_optimal(g)
 modularity(oc)
+sizes(oc)
+membership(oc)
+
+table(get.edge.attribute(g))
 
 c2 = cluster_leading_eigen(g) 
 modularity(c2)
 # visualizing clusters
-plot(g, layout=coords, vertex.label=NA, vertex.color=membership(oc),vertex.size=10)
+plot(g, layout=coords, vertex.label=NA, vertex.color=membership(oc),vertex.size=15)
 
-##individuare il terrorista più pericoloso
+##individuare il terrorista con più connessioni
 plot(degree(g))
-sizes(oc)
-membership(oc)
+vertex.attributes(g,'1')
+vertex.attributes(g,'3')
+vertex.attributes(g,'7')
 
+
+## i tre terroristi con più connessione del grafo
 plot(betweenness(g))
 vertex.attributes(g,'57')
 vertex.attributes(g,'3')
 vertex.attributes(g,'37')
+
+
+##studio sottografo con tutte le connessione dal nodo 1 (nodo con più connessioni)
+table(edge_attr(g))
+
+ends(g,7)
+
+
+sub1 = make_ego_graph(g, nodes = "1", order=1)[[1]]
+lo = layout_as_star(sub1)
+plot(sub1,layout=lo, edge.width = E(g)$weight)
+
+
 
 ##- individuare terrorista più pericoloso = con più connessioni tra i vari cluster [meno pericoloso]
 ##- individuare il “capo di ogni cluster” = più connesso all interno del cluster (indipendentemente dal peso) [meno connessoo]
 ##- il gruppo più coeso [meno coeso]
 ##- somma totale peso archi entranti e uscenti maggiore [e minore]
 
-degree(g)
+
 
 
 edge_betweenness(g)
 
-oce = cluster_edge_betweenness(g)
 
 b = cohesive_blocks(g)
 
