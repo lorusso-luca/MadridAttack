@@ -47,16 +47,15 @@ vertex.attributes(g,'37')
 
 
 ##studio sottografo con tutte le connessione dal nodo 1 (nodo con più connessioni)
-table(edge_attr(g))
-
-ends(g,7)
-
 
 sub1 = make_ego_graph(g, nodes = "1", order=1)[[1]]
 lo = layout_as_star(sub1)
 plot(sub1,layout=lo, edge.width = E(g)$weight)
 
 
+#pesodi tutti gli archi del g
+table(edge_attr(g))
+ends(g,7)
 
 ##- individuare terrorista più pericoloso = con più connessioni tra i vari cluster [meno pericoloso]
 ##- individuare il “capo di ogni cluster” = più connesso all interno del cluster (indipendentemente dal peso) [meno connessoo]
