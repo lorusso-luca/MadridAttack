@@ -19,12 +19,33 @@ names=V(g)$names
 
 coords = layout_with_fr(g)
 oc = cluster_optimal(g)
+modularity(oc)
 
 c2 = cluster_leading_eigen(g) 
-
+modularity(c2)
 # visualizing clusters
-plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(oc),vertex.size=10)
+plot(g, layout=coords, vertex.label=NA, vertex.color=membership(oc),vertex.size=10)
 
-plot(g, layout=coords, vertex.label=NA, mark.groups=as.list(c2),vertex.size=10)
 
-plot(g)
+##individuare il terrorista più pericoloso
+##- individuare terrorista più pericoloso = con più connessioni tra i vari cluster [meno pericoloso]
+##- individuare il “capo di ogni cluster” = più connesso all interno del cluster (indipendentemente dal peso) [meno connessoo]
+##- il gruppo più coeso [meno coeso]
+##- somma totale peso archi entranti e uscenti maggiore [e minore]
+
+degree(g)
+
+
+edge_betweenness(g)
+
+oce = cluster_edge_betweenness(g)
+
+b = cohesive_blocks(g)
+
+print(b)
+s = sapply(blocks(b), FUN =length)
+plot_hierarchy(b, vertex.label=cohesion(b), vertex.size=(s / max(s)) * 20 + 10) 
+
+vertex.attributes(g,'1')
+
+
