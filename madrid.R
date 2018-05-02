@@ -25,6 +25,24 @@ modularity(oc)
 sizes(oc)
 membership(oc)
 
+sizes(oc)
+membership(oc)
+#CAPO CLUSTER
+for (i in 1:5){
+  print(paste("COMMUNITY ",i))
+  temp <- induced_subgraph(g, which(membership(oc) %in% i), impl = c("auto", "copy_and_delete",
+                                                                     "create_from_scratch"))
+  plot(induced_subgraph(g, which(membership(oc) %in% i), impl = c("auto", "copy_and_delete",
+                                                                  "create_from_scratch")), vertex.size = betweenness(temp))
+  
+  print(betweenness(temp))
+}
+
+
+
+
+
+
 table(get.edge.attribute(g))
 
 c2 = cluster_leading_eigen(g) 
@@ -68,7 +86,6 @@ ends(g,7)
 edge_betweenness(g)
 
 
-b = cohesive_blocks(g)
 
 print(b)
 s = sapply(blocks(b), FUN =length)
